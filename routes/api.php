@@ -30,5 +30,5 @@ Route::delete('/cart/item/{item}', [CartItemController::class, 'deleteAction']);
 Route::patch('/cart/item/{item}/remove', [CartItemController::class, 'crossAction']);
 Route::patch('/cart/item/{item}/reorder', [CartItemController::class, 'reorderAction']);
 
-Route::post('/user/spending_limit', [ , 'spendingLimitAction']);
+Route::post('/user/spending_limit', [CartController::class , 'spendingLimitAction']); //@todo: REPLACE CartCont with UserCont
 
