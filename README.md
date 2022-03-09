@@ -6,6 +6,11 @@ outlined in the test spec.
 I have decided to use Laravel for this project as it is most familiar to me as of the time of writing.
 The database will be a simple MySQL DB, and the project output will be in the form of an API.
 
+The majority of the code can be found within
+`app/Http/` or `app/Models/`.
+
+The database migrations/schema can be found in `database/migrations/`.
+
 ###### _Database design_:
 - **Product table**
 - **User table**
