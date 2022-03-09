@@ -6,7 +6,7 @@ outlined in the test spec.
 I have decided to use Laravel for this project as it is most familiar to me as of the time of writing.
 The database will be a simple MySQL DB, and the project output will be in the form of an API.
 
-_Database design_:
+###### _Database design_:
 - **Product table**
 - **User table**
 - Shopping cart:
@@ -19,6 +19,20 @@ _Database design_:
        - **Cart table** (holds cart info like total, price limits, etc)
        - **CartItem table** (holds session ids (optional here), product_id FK, quantity, etc
 
-_API Design_:
+###### _API Design_:
 
 The API is a simple RESTful collection of endpoints, using the JSON data format.
+
+###### _User stories_:
+
+- View a list of items on a shopping list (READ ALL)
+- Add items to the shopping list (CREATE)
+- Remove stuff from the shopping list (DELETE)
+- When something has been bought on the shopping list, cross it off the list (UPDATE)
+- Persist the data so I can view the list if I move away from the page (SAVE)
+- I want to reorder items on my list (UPDATE)
+- Use the TESCO API to fetch prices on the list (READ) (BACKEND POST)
+- Total up the prices (READ)
+- Place a spending limit on the user, alerting them if they go over the limit (UPDATE)
+- Share my list via email (READ & POST)
+- Password protect the user accounts
