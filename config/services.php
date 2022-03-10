@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'tesco_api' => [
+        'url' => env('TESCO_API_URL'),
+        'subscription_key' => env('TESCO_API_SUBSCRIPTION_KEY'),
+    ]
+
 ];
