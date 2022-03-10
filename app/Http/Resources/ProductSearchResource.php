@@ -19,7 +19,18 @@ class ProductSearchResource extends JsonResource
             'name' => $this->resource->name,
             'image' => $this->resource->image,
             'department' => $this->resource->department,
+            'description' => isset($this->resource->description) ? $this->getDescription($this->resource->description) : null,
             'price' => $this->resource->price,
         ];
+    }
+
+    public function getDescription($descriptions): array
+    {
+        $resources = [];
+        foreach ($descriptions as $description) {
+            $resources[] = $description;
+        }
+
+        return $resources;
     }
 }
