@@ -21,7 +21,7 @@ The database migrations/schema can be found in `database/migrations/`.
     3. Can instead have a Cart table with a user_id FK, and a CartItem table with a cart_id FK.
         - Similar to the join but can store more data better (is more relational/normalised)     
     -  Use option 3:
-       - **Cart table** (holds cart info like total, price limits, etc)
+       - **Cart table** (holds cart info like total, price limits, etc. Acts like a session).
        - **CartItem table** (holds session ids (optional here), product_id FK, quantity, etc
 
 ###### _API Design_:
@@ -32,6 +32,7 @@ The API is a simple RESTful collection of endpoints, using the JSON data format.
 
 - View a list of items on a shopping list (READ ALL)
 - Add items to the shopping list (CREATE)
+  - Must also have a list of products to add from. Use TESCO API (POST).
 - Remove stuff from the shopping list (DELETE)
 - When something has been bought on the shopping list, cross it off the list (UPDATE)
 - Persist the data so I can view the list if I move away from the page (SAVE)

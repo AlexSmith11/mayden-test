@@ -9,78 +9,39 @@ use App\Models\CartItem;
 class CartItemController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Read
      */
-    public function index()
+    public function indexAction()
     {
         //
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Add item to cart
      */
-    public function create()
+    public function createAction()
+    {
+        //
+    }
+
+    public function deleteAction(CartItem $cartItem)
     {
         //
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCartItemRequest  $request
-     * @return \Illuminate\Http\Response
+     * Disable an item in the users cart
      */
-    public function store(StoreCartItemRequest $request)
+    public function crossAction()
     {
-        //
+
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\CartItem  $cartItem
-     * @return \Illuminate\Http\Response
+     * Reorder a product in the cart
      */
-    public function show(CartItem $cartItem)
+    public function reorderAction()
     {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\CartItem  $cartItem
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CartItem $cartItem)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCartItemRequest  $request
-     * @param  \App\Models\CartItem  $cartItem
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCartItemRequest $request, CartItem $cartItem)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\CartItem  $cartItem
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CartItem $cartItem)
-    {
-        //
     }
 }
