@@ -30,6 +30,7 @@ class CartItemRequest extends FormRequest
             'department' => ['string'],
             'description' => ['string'],
             'price' => ['numeric', 'between:0,999.99'],
+            'quantity' => ['integer'],
         ];
     }
 }
