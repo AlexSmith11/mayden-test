@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductSearchRequest;
+use App\Http\Resources\ProductSearchResource;
 use App\Models\Product;
 use App\Clients\TescoClient;
 use Illuminate\Http\Request;
@@ -25,7 +26,15 @@ class ProductController extends Controller
         $products = $results->uk->ghs->products->results;
         $total = count($products);
 
-        return $products;
+        $resources = [];
+        foreach ($products as $product) {
+            $resources[] = new ProductSearchResource($product);
+        }
+        $resources[] = ['meta' => [
+            'total_products' => $total
+        ]];
+
+        return $resources;
     }
 
 }
