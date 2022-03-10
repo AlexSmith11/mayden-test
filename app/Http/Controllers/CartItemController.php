@@ -24,7 +24,12 @@ class CartItemController extends Controller
      */
     public function createAction()
     {
-        //
+        // require: product id (tesco product id), plus rest of product object e.g. description, name, etc -
+        // REMEMBER: the user must first have performed a search so must have the required product info.
+        // save product to db
+        // create new CartItem and assign to product (not tesco_id, our product id).
+        // get the users cart i.e. Auth::me
+        // assign CartItem to users cart
     }
 
     public function deleteAction(CartItem $cartItem)
