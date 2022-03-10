@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Cart;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CartSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +15,10 @@ class CartSeeder extends Seeder
      */
     public function run()
     {
-        $cart = new Cart();
-        $cart->user_id = 1;
-        $cart->total = 67.49;
-        $cart->saveOrFail();
+        $user = new User();
+        $user->name = 'test_user_alex';
+        $user->email = 'test"email.com';
+        $user->password = 'password';
+        $user->saveOrFail();
     }
 }

@@ -22,6 +22,7 @@ class ProductSeeder extends Seeder
         $product->department = 'cheese dept';
         $product->description = 'cheese description!';
         $product->price = 0.99;
+        $product->saveOrFail();
 
         $product = new Product();
         $product->tesco_id = 11;
@@ -30,5 +31,6 @@ class ProductSeeder extends Seeder
         $product->department = 'fish dept';
         $product->description = 'fish description!';
         $product->price = 1.99;
+        $product->saveOrFail();
     }
 }
