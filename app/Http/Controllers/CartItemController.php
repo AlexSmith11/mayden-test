@@ -18,6 +18,8 @@ class CartItemController extends Controller
 
     /**
      * Add item to cart
+     *
+     * Because we are using a separate DB for products (Tesco), we will also use this action to store the prod in our own DB.
      */
     public function createAction()
     {
