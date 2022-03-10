@@ -29,9 +29,10 @@ Route::get('/cart', [CartController::class, 'indexAction']); // contains both li
 Route::post('/cart/create', [CartController::class, 'createAction']); //? only needed on new user creation, user shouldn't be able to do this manually
 Route::post('/cart/email', [CartController::class, 'emailAction']);
 
-Route::get('/cart/item/{item}', [CartItemController::class, 'indexAction']);
+Route::get('/cart/items', [CartItemController::class, 'indexAction']);
+Route::get('/cart/item/{cartItem}', [CartItemController::class, 'readAction']);
 Route::post('/cart/item', [CartItemController::class, 'createAction']);
-Route::patch('/cart/item/{item}/remove', [CartItemController::class, 'crossAction']);
-Route::patch('/cart/item/{item}/reorder', [CartItemController::class, 'reorderAction']);
-Route::delete('/cart/item/{item}', [CartItemController::class, 'deleteAction']);
+Route::delete('/cart/item/{cartItem}', [CartItemController::class, 'deleteAction']);
+Route::patch('/cart/item/remove/{cartItem}', [CartItemController::class, 'crossAction']);
+Route::patch('/cart/item/reorder/{cartItem}', [CartItemController::class, 'reorderAction']);
 

@@ -25,6 +25,7 @@ class CartItemSeeder extends Seeder
         $cartItem = new CartItem();
         $cartItem->cart_id = 1;
         $cartItem->product_id = 2;
+        $cartItem->rank = 1;
         $cartItem->quantity = 5;
         $cartItem->display = false;
         $cartItem->saveOrFail();

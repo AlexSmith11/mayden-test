@@ -25,12 +25,12 @@ class CartItemRequest extends FormRequest
     {
         return [
             'tesco_id' => ['required', 'integer'],
-            'name' => ['required', 'string'],
-            'image' => ['required', 'string'],
+            'quantity' => ['integer'],
+            'name' => ['string'],
+            'image' => ['string'],
             'department' => ['string'],
             'description' => ['string'],
             'price' => ['numeric', 'between:0,999.99'],
-            'quantity' => ['integer'],
         ];
     }
 }

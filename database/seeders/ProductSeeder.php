@@ -32,5 +32,14 @@ class ProductSeeder extends Seeder
         $product->description = 'fish description!';
         $product->price = 1.99;
         $product->saveOrFail();
+
+        $product = new Product();
+        $product->tesco_id = 17;
+        $product->name = 'wagon wheel';
+        $product->image = 'www.imgur/image/fakeimage.com';
+        $product->department = 'biscuit dept';
+        $product->description = 'wagon wheel description!';
+        $product->price = 0.79;
+        $product->saveOrFail();
     }
 }

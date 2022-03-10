@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('cart_id');
             $table->unsignedBigInteger('product_id');
+            $table->integer('rank')->nullable();
             $table->integer('quantity')->default(1);
             $table->boolean('display')->default(true);
             $table->timestamps();
