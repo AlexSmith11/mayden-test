@@ -12,9 +12,8 @@ use Illuminate\Http\Response;
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a list of returned products.
      *
-     * @return Response
      */
     public function searchAction(ProductSearchRequest $request)
     {
