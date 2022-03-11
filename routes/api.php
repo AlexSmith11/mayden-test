@@ -25,11 +25,10 @@ Route::post('/user/spending_limit', [CartController::class , 'spendingLimitActio
 
 Route::post('/product/search', [ProductController::class, 'searchAction']);
 
-Route::get('/cart', [CartController::class, 'indexAction']); // contains both list of all items and the total price
+Route::get('/cart/{cart}', [CartController::class, 'indexAction']); // contains both list of all items and the total price
 Route::post('/cart/create', [CartController::class, 'createAction']); //? only needed on new user creation, user shouldn't be able to do this manually
 Route::post('/cart/email', [CartController::class, 'emailAction']);
 
-Route::get('/cart/items', [CartItemController::class, 'indexAction']);
 Route::get('/cart/item/{cartItem}', [CartItemController::class, 'readAction']);
 Route::post('/cart/item', [CartItemController::class, 'createAction']);
 Route::delete('/cart/item/{cartItem}', [CartItemController::class, 'deleteAction']);

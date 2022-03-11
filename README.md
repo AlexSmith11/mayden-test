@@ -30,15 +30,40 @@ The API is a simple RESTful collection of endpoints, using the JSON data format.
 
 ###### _User stories_:
 
-- View a list of items on a shopping list (READ ALL)
-- Add items to the shopping list (CREATE)
-  - Must also have a list of products to add from. Use TESCO API (POST).
-- Remove stuff from the shopping list (DELETE)
-- When something has been bought on the shopping list, cross it off the list (UPDATE)
-- Persist the data so I can view the list if I move away from the page (SAVE)
+- ~~View a list of items on a shopping list (READ ALL)~~
+- ~~Add items to the shopping list (CREATE)~~
+  - ~~Must also have a list of products to add from. Use TESCO API (POST).~~
+- ~~Remove stuff from the shopping list (DELETE)~~
+- ~~When something has been bought on the shopping list, cross it off the list (UPDATE)~~
+- ~~Persist the data so I can view the list if I move away from the page (SAVE)~~
 - I want to reorder items on my list (UPDATE)
-- Use the TESCO API to fetch prices on the list (READ) (BACKEND POST)
-- Total up the prices (READ)
+- ~~Use the TESCO API to fetch prices on the list (READ) (BACKEND POST)~~
+- ~~Total up the prices (READ)~~
 - Place a spending limit on the user, alerting them if they go over the limit (UPDATE)
 - Share my list via email (READ & POST)
 - Password protect the user accounts
+
+
+### Development:
+
+To setup this project, simply clone, then run `composer install` in the project directory.
+
+Then, to start the development environment, run `./vendor/bin/sail up` to use Laravels built-in version of docker, Sail.
+
+
+### API:
+- Search:
+  - Search for products: `POST: /api/product/search`
+
+
+- Cart:
+  - Get your cart: `GET: /api/cart/{cart}`
+  - Get individual product in your cart: `GET: /api/cart/item/{cartItem}`
+  - Add product to cart: `POST: /api/cart/item`
+  - Remove a product from your cart: `DELETE: /api/cart/item/{cartItem}`
+  - Disable a product in your cart: `PATCH: /api/cart/item/remove/{cartItem}`
+  - Reorder cart item `PATCH: /api/cart/item/reorder/{cartItem}`
+    
+
+- User:
+    - Add spending limit: `POST: /api/user/spending_limit`

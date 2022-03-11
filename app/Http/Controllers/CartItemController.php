@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CartItemRequest;
+use App\Http\Resources\CartItemResource;
+use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -10,16 +12,10 @@ use Illuminate\Http\JsonResponse;
 
 class CartItemController extends Controller
 {
-    // @TODO: only return current users items
-    public function indexAction()
-    {
-        return CartItem::all();
-    }
-
     // @TODO: only return current users item
     public function readAction(CartItem $cartItem)
     {
-        return $cartItem;
+        return new CartItemResource($cartItem);
     }
 
 
@@ -37,24 +33,30 @@ class CartItemController extends Controller
         $product = Product::where('tesco_id', $tescoId)->first();
 
         // add product to DB if we do not already have a copy
-        if($product == null) {
+        if($product == null && isset($data['name'])) {
             $product = new Product();
             $product->tesco_id = $data['tesco_id'];
             $product->name = $data['name'];
             $product->image = $data['image'];
             $product->department = $data['department'];
             $product->description = $data['description'];
-            $product->price = $data['price'];
+            $product->price = $data['price'];   // this might be the wrong one? what is unitprice
             $product->saveOrFail();
         }
 
         $cartItem = new CartItem();
 
         // get the users Cart i.e. Auth::me->cart and assign CartItem to users cart
-        $cartItem->cart_id = 1; // @TODO: Use the current user, not just user 1
+        $cartItem->cart_id = 1; // @TODO: Use the current users cart, not just user 1
         $cartItem->product_id = $product->id;
         $cartItem->quantity = $data['quantity'];
         $cartItem->saveOrFail();
+
+        // update cart total
+        $cart = Cart::where('id', $cartItem->cart_id)->firstOrFail();
+        $cart->total = $cart->total + $product->price;
+        $cart->saveOrFail();
+
 
         return $cartItem;
     }
@@ -62,7 +64,14 @@ class CartItemController extends Controller
     // @TODO: only delete current users cart item
     public function deleteAction(CartItem $cartItem)
     {
+        $price = $cartItem->price;
         $cartItem->delete();
+
+        // update cart total
+        $cart = Cart::where('id', $cartItem->cart_id)->firstOrFail();
+        $cart->total = $cart->total - $price;
+        $cart->saveOrFail();
+
         return new JsonResponse(['message' => 'product removed from cart'], 200);
     }
 
@@ -121,31 +130,4 @@ class CartItemController extends Controller
 
         return $allCartItems;
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

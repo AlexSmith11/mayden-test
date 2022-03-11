@@ -4,18 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
+use App\Http\Resources\CartItemResource;
 use App\Models\Cart;
+use App\Models\CartItem;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexAction()
+    // @TODO: only return current users items
+    public function indexAction(Cart $cart)
     {
-        return ['message' => 'hello'];
+        $cartItems = $cart->cartItems()->get();
+
+        $resources = [];
+        foreach ($cartItems as $cartItem) {
+            $resources[] = new CartItemResource($cartItem);
+        }
+
+        return [
+            'data' => $resources,
+            'total' => $cart->total,
+        ];
     }
 
     /**
