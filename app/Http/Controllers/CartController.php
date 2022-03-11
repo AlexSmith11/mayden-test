@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCartRequest;
-use App\Http\Requests\UpdateCartRequest;
-use App\Http\Resources\CartItemResource;
 use App\Http\Resources\CartResource;
+use App\Mail\CartMail;
 use App\Models\Cart;
-use App\Models\CartItem;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
@@ -31,8 +29,12 @@ class CartController extends Controller
     /**
      * Send an email of the product list to a given address
      */
-    public function emailAction()
+    public function emailAction(Request $request)
     {
-        $cart = Cart::all();
+        $data = $request->json()->all();
+        $recipient = $data['recipient'];
+
+        Mail::to($recipient)->send(new CartMail());
+        return 'A message has been sent to Mailtrap.';
     }
 }

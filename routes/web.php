@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Mail\CartMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/cart/email', function() {
-    return new CartMail();
-});
+//Route::get('/cart/email', function() {
+//    Mail::to('alexsmith11nd@gmail.com')->send(new CartMail());
+//    return redirect('/');
+//});

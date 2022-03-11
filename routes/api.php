@@ -27,6 +27,7 @@ Route::post('/product/search', [ProductController::class, 'searchAction']);
 
 Route::get('/cart/{cart}', [CartController::class, 'indexAction']); // contains both list of all items and the total price
 Route::post('/cart/create', [CartController::class, 'createAction']); //? only needed on new user creation, user shouldn't be able to do this manually
+Route::post('/cart/email', [CartController::class, 'emailAction']);
 
 Route::get('/cart/item/{cartItem}', [CartItemController::class, 'readAction']);
 Route::post('/cart/item', [CartItemController::class, 'createAction']);
