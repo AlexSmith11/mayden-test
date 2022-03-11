@@ -40,7 +40,7 @@ The API is a simple RESTful collection of endpoints, using the JSON data format.
 - ~~Use the TESCO API to fetch prices on the list (READ) (BACKEND POST)~~
 - ~~Total up the prices (READ)~~
 - Place a spending limit on the user, alerting them if they go over the limit (UPDATE)
-- Share my list via email (READ & POST)
+- ~~Share my list via email (READ & POST)~~
 - Password protect the user accounts
 
 
