@@ -67,3 +67,4 @@ Then, to start the development environment, run `./vendor/bin/sail up` to use La
 
 - User:
     - Add spending limit: `POST: /api/user/spending_limit`
+    - Send an email of your shopping basket: `POST: /api/cart/email`
