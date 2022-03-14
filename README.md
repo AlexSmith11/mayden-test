@@ -46,10 +46,10 @@ The API is a simple RESTful collection of endpoints, using the JSON data format.
 
 ### Development:
 
-To setup this project, simply clone, then run `composer install` in the project directory.
-
-Then, to start the development environment, run `./vendor/bin/sail up` to use Laravels built-in version of docker, Sail.
-
+To setup this project: 
+- Clone, then run `composer install` in the project directory.
+- To start the development environment, run `./vendor/bin/sail up` to use Laravels built-in version of docker, Sail.
+- Finally, run `./vendor/bin/sail artisan migrate:fresh --seed` to populate and seed the database.
 
 ### API:
 - Search:
@@ -68,3 +68,13 @@ Then, to start the development environment, run `./vendor/bin/sail up` to use La
 - User:
     - Add spending limit: `POST: /api/user/spending_limit`
     - Send an email of your shopping basket: `POST: /api/cart/email`
+
+### Improvements/Next:
+
+A few corners were cut in this project - I could only spend an hour a night on it, so things typically expected to be
+found may not be here. For example, request classes, and the associated request validation is light. Subsequent error
+handling isn't handled properly. 
+
+A more expansive user system that is more dynamic, more generally professional code and code written more in line with
+OOP standards are all things I would look for in a refactor. I tried to keep the DB design scalable, and the controllers
+as descriptive as possible. 

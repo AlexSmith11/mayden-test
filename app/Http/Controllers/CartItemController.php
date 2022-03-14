@@ -40,7 +40,7 @@ class CartItemController extends Controller
             $product->image = $data['image'];
             $product->department = $data['department'];
             $product->description = $data['description'];
-            $product->price = $data['price'];   // this might be the wrong one? what is unitprice
+            $product->price = $data['price'];   // this might be the wrong one? what is unitprice?
             $product->saveOrFail();
         }
 
@@ -65,10 +65,11 @@ class CartItemController extends Controller
     public function deleteAction(CartItem $cartItem)
     {
         $price = $cartItem->price;
+        $cartId = $cartItem->cart_id;
         $cartItem->delete();
 
         // update cart total
-        $cart = Cart::where('id', $cartItem->cart_id)->firstOrFail();
+        $cart = Cart::where('id', $cartId)->firstOrFail();
         $cart->total = $cart->total - $price;
         $cart->saveOrFail();
 

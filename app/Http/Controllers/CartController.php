@@ -17,7 +17,7 @@ class CartController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Create a new cart - this is tied to the user. When a new user is created, a cart assigned to them should also.
      *
      * @return \Illuminate\Http\Response
      */
