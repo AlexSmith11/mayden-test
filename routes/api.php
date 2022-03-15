@@ -31,12 +31,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/cart', [CartController::class, 'indexAction']); // contains list of all items, spending limit and the total price
     Route::post('/cart/email', [CartController::class, 'emailAction']);
 
-    Route::get('/cart/item/{cartItem}', [CartItemController::class, 'readAction']);
+
     Route::post('/cart/item', [CartItemController::class, 'createAction']);
     Route::delete('/cart/item/{cartItem}', [CartItemController::class, 'deleteAction']);
     Route::patch('/cart/item/remove/{cartItem}', [CartItemController::class, 'crossAction']);
     Route::patch('/cart/item/reorder/{cartItem}', [CartItemController::class, 'reorderAction']);
 });
+Route::get('/cart/item/{cartItem}', [CartItemController::class, 'readAction']);
 
 // Public routes
 Route::post('/register', [AuthController::class, 'registerAction']);

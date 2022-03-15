@@ -79,6 +79,22 @@ To setup this project:
 - To Create a new user, first use the register request in the supplied postman doc.
 - Use the returned token as the bearer token for logging out and accessing the users data (insert it as the auth token in postman).
 
+### Testing:
+
+To run the test suite, use `./vendor/bin/sail php ./vendor/bin/phpunit`.
+
+A major problem I had with this project was that I lost time at the start due to trying to get Sanctum to work with PHPUnit.
+This meant I got massively ahead of myself in terms of TDD due to having to putting this on the backburner, as I was 
+worried due to my limited time I would not write any actual code. My test coverage is certainly not 100% due to my 
+fight with the authentication system. 
+
+Ultimately I believe this problem came from implementing authentication after many of the more basic user stories,
+albeit I was forced to due to time constraints.
+
+I am however glad that I managed to figure out how to test Laravel Sanctum from scratch. Regardless of how this goes I'm
+really happy that I managed to expand my testing knowledge! It's something that I'm still getting used to and am more than
+ever looking to increase my test coverage on the projects I work on.
+
 ### Improvements/Next:
 
 A few corners were cut in this project - I could only spend an hour a night on it, so things typically expected to be

@@ -20,5 +20,11 @@ class UserSeeder extends Seeder
         $user->email = 'test@email.com';
         $user->password = 'password';
         $user->saveOrFail();
+
+        $user = new User();
+        $user->name = 'lewis';
+        $user->email = 'lewis@email.com';
+        $user->password = 'password';
+        $user->saveOrFail();
     }
 }

@@ -16,6 +16,7 @@ class CartItemController extends Controller
     public function readAction(CartItem $cartItem)
     {
         $me = Auth::user();
+        if(!isset($me->cart)) return ['message' => 'no cart found'];
         if($cartItem->cart_id !== $me->cart->id) return 401;
 
         return new CartItemResource($cartItem);
