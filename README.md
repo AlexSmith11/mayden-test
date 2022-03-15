@@ -36,12 +36,14 @@ The API is a simple RESTful collection of endpoints, using the JSON data format.
 - ~~Remove stuff from the shopping list (DELETE)~~
 - ~~When something has been bought on the shopping list, cross it off the list (UPDATE)~~
 - ~~Persist the data so I can view the list if I move away from the page (SAVE)~~
-- I want to reorder items on my list (UPDATE)
+- I want to reorder items on my list (UPDATE)*
 - ~~Use the TESCO API to fetch prices on the list (READ) (BACKEND POST)~~
 - ~~Total up the prices (READ)~~
-- Place a spending limit on the user, alerting them if they go over the limit (UPDATE)
+- ~~Place a spending limit on the user, alerting them if they go over the limit (UPDATE)~~
 - ~~Share my list via email (READ & POST)~~
-- Password protect the user accounts
+- ~~Password protect the user accounts~~
+
+*_I demand to speak to the manager_.
 
 
 ### Development:
@@ -66,15 +68,25 @@ To setup this project:
     
 
 - User:
+    - Register new user: `POST: /api/register`
+    - Login: `POST: /api/login`
+    - Logout: `POST: /api/logout`
     - Add spending limit: `POST: /api/user/spending_limit`
     - Send an email of your shopping basket: `POST: /api/cart/email`
+  
+  
+- This project uses token authentication to run a user session.
+- To Create a new user, first use the register request in the supplied postman doc.
+- Use the returned token as the bearer token for logging out and accessing the users data (insert it as the auth token in postman).
 
 ### Improvements/Next:
 
 A few corners were cut in this project - I could only spend an hour a night on it, so things typically expected to be
-found may not be here. For example, request classes, and the associated request validation is light. Subsequent error
-handling isn't handled properly. 
+found may not be here. For example, request classes, and the associated request validation is light or inconsistent 
+(some is in-controller, others are in-request). Subsequent error handling isn't handled properly. 
 
-A more expansive user system that is more dynamic, more generally professional code and code written more in line with
-OOP standards are all things I would look for in a refactor. I tried to keep the DB design scalable, and the controllers
-as descriptive as possible. 
+A more expansive user system that is more dynamic, more generally professional code, using request classes, policies for
+authorisation, and code written more in line with OOP standards are all things I would look for in a refactor. I tried to
+keep the DB design scalable, and the controllers as descriptive as possible. Off the top of my head I would also make it
+so that any searched products would save straight to the database, instead of only adding ones the customer also wants to 
+add to their basket, but that's a whole other can of worms.

@@ -9,12 +9,15 @@ use App\Models\CartItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 class CartItemController extends Controller
 {
-    // @TODO: only return current users item
     public function readAction(CartItem $cartItem)
     {
+        $me = Auth::user();
+        if($cartItem->cart_id !== $me->cart->id) return 401;
+
         return new CartItemResource($cartItem);
     }
 
@@ -23,7 +26,6 @@ class CartItemController extends Controller
      * Add item to cart
      *
      * Because we are using a separate DB for products (Tesco), we will also use this action to store the prod in our own DB.
-     * @TODO: only add to current users cart (but also add the product)
      */
     public function createAction(CartItemRequest $request)
     {
@@ -46,8 +48,8 @@ class CartItemController extends Controller
 
         $cartItem = new CartItem();
 
-        // get the users Cart i.e. Auth::me->cart and assign CartItem to users cart
-        $cartItem->cart_id = 1; // @TODO: Use the current users cart, not just user 1
+        // get the users cart and assign CartItem to users cart
+        $cartItem->cart_id = Auth::user()->cart->id;
         $cartItem->product_id = $product->id;
         $cartItem->quantity = $data['quantity'];
         $cartItem->saveOrFail();
@@ -61,11 +63,13 @@ class CartItemController extends Controller
         return $cartItem;
     }
 
-    // @TODO: only delete current users cart item
     public function deleteAction(CartItem $cartItem)
     {
         $price = $cartItem->price;
         $cartId = $cartItem->cart_id;
+
+        if($cartId !== Auth::user()->cart->id) return 401;
+
         $cartItem->delete();
 
         // update cart total
@@ -78,11 +82,11 @@ class CartItemController extends Controller
 
     /**
      * Disable an item in the users cart
-     *
-     * @TODO: only disable current users cart item
      */
     public function crossAction(CartItem $cartItem)
     {
+        if($cartItem->cart_id !== Auth::user()->cart->id) return 401;
+
         $cartItem->toggleDisplay();
         $cartItem->saveOrFail();
         return new JsonResponse(['message' => 'product display toggled'], 200);
@@ -90,12 +94,11 @@ class CartItemController extends Controller
 
     /**
      * Reorder a product in the cart
-     *
-     * @TODO: only reorder current users cart item
      */
     public function reorderAction(Request $request, CartItem $cartItem)
     {
         $data = $request->json()->all();
+        if($cartItem->cart_id !== Auth::user()->cart->id) return 401;
 
         $cartItem->rank = $data['rank'];
         $cartItem->saveOrFail();

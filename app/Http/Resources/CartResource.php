@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Auth;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CartResource extends JsonResource
@@ -17,6 +18,7 @@ class CartResource extends JsonResource
         return [
             'cart_items' => $this->getCartItems($this->resource->cartItems),
             'price_total' => $this->resource->total,
+            'spending_limit' => Auth::user()->spending_limit,
         ];
     }
 

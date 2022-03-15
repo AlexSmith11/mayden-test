@@ -6,8 +6,6 @@ use App\Http\Requests\ProductSearchRequest;
 use App\Http\Resources\ProductSearchResource;
 use App\Models\Product;
 use App\Clients\TescoClient;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {

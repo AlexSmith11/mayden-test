@@ -4,26 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\CartResource;
 use App\Mail\CartMail;
-use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
-    // @TODO: only return current users items
-    public function indexAction(Cart $cart)
+    public function indexAction()
     {
-        return new CartResource($cart);
-    }
-
-    /**
-     * Create a new cart - this is tied to the user. When a new user is created, a cart assigned to them should also.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createAction()
-    {
-        //
+        return new CartResource(Auth::user()->cart);
     }
 
     /**
